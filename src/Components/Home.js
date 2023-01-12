@@ -2,7 +2,7 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import pizza from './Pizza.jpg';
 
-export default function Home() {
+const Home = () => {
 
     const history = useHistory();
 
@@ -13,7 +13,7 @@ export default function Home() {
     return(
         <div className="home-wrapper">
             <img src={pizza} alt="pizza" />
-            <button className="order-button"
+            <button className="orders-button"
                 onClick={routeToOrder}
             >
                 Pizza?
@@ -21,3 +21,5 @@ export default function Home() {
         </div>
     )
 }
+
+export default Home;

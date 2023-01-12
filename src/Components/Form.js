@@ -1,7 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 
-export default function OrderForm(props) {
+const OrderForm = (props) => {
 
     const { values, update, submit } = props;
 
@@ -23,9 +23,7 @@ export default function OrderForm(props) {
     }
 
 
-    return (
-        <><h2>Build Your Own Pizza!</h2>
-        
+    return (        
         <form id="pizza-form" onSubmit={onSubmit}>
             <div className="form-group-selection">
                 <label>Size:
@@ -179,6 +177,8 @@ export default function OrderForm(props) {
             <div className="submit">
                 <button id="order-button" onClick={routeToConfirmation}>Add to Order</button>
             </div>
-        </form></>
+        </form>
     )
 }
+
+export default OrderForm;

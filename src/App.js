@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 import { Route, Link } from "react-router-dom";
 
@@ -22,8 +22,16 @@ const App = () => {
         <Home />
       </Route>
 
-      <Route path="/pizza">
+      <Route exact path="/pizza">
         <OrderForm />
+      </Route>
+
+      <Route exact path="/confirmation">
+        <OrderConfirmation />
+      </Route>
+
+      <Route exact path="/help">
+        <Help />
       </Route>
     </div>
   );
