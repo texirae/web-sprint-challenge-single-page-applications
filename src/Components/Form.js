@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 
-function OrderForm() {
-    const [formValues, setFormValues] = useState({});
+export default function OrderForm(props) {
 
     const { values, update, submit } = props;
 
@@ -20,7 +19,7 @@ function OrderForm() {
         <form className="order-form" onSubmit={onSubmit}>
             <div className="form-group-selection">
                 <label>Size:
-                    <select value={values.size} name="size" onChange={onChange}>
+                    <select value={values.size} name="#size-dropdown" onChange={onChange}>
                         <option value="">--Select a Size--</option>
                         <option value="Small">Small</option>
                         <option value="medium">Medium</option>
@@ -167,8 +166,22 @@ function OrderForm() {
                 </label>
             </div>
 
-            <button>Submit</button>
+            <div className="form-group-text-box">
+                <label>Special Instructions:
+                    <input
+                        name="instructions"
+                        type="text"
+                        placeholder="Type special instructions here"
+                        maxLength="100"
+                        value={values.instructions}
+                        onChange={onChange}
+                    />
+                </label>
+            </div>
 
+            <div className="submit">
+                <button>Submit</button>
+            </div>
         </form>
     )
 }
