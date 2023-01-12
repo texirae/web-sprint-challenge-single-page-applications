@@ -1,5 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+import pizza from './Pizza.jpg';
 
 export default function Home() {
 
@@ -11,7 +12,7 @@ export default function Home() {
 
     return(
         <div className="home-wrapper">
-            <img src="/Pizza.jpg"></img>
+            <img src={pizza} />
             <button className="order-button"
                 onClick={routeToOrder}
             >
