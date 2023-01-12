@@ -12,7 +12,7 @@ export default function Home() {
 
     return(
         <div className="home-wrapper">
-            <img src={pizza} />
+            <img src={pizza} alt="pizza" />
             <button className="order-button"
                 onClick={routeToOrder}
             >

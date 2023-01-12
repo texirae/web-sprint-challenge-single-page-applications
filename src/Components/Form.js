@@ -1,8 +1,16 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 
 export default function OrderForm(props) {
 
     const { values, update, submit } = props;
+
+    const history = useHistory();
+
+    const routeToConfirmation= () => {
+        history.push("/Confirmation")
+    }
+
 
     const onChange = evt => {
         const {value} = evt.target;
@@ -169,7 +177,7 @@ export default function OrderForm(props) {
             </div>
 
             <div className="submit">
-                <button id="order-button">Add to Order</button>
+                <button id="order-button" onClick={routeToConfirmation}>Add to Order</button>
             </div>
         </form></>
     )
