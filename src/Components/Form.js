@@ -16,10 +16,10 @@ export default function OrderForm(props) {
 
 
     return (
-        <form className="order-form" onSubmit={onSubmit}>
+        <form className="pizza-form" onSubmit={onSubmit}>
             <div className="form-group-selection">
                 <label>Size:
-                    <select value={values.size} name="#size-dropdown" onChange={onChange}>
+                    <select value={values.size} name="size-dropdown" onChange={onChange}>
                         <option value="">--Select a Size--</option>
                         <option value="Small">Small</option>
                         <option value="medium">Medium</option>
@@ -170,6 +170,7 @@ export default function OrderForm(props) {
                 <label>Special Instructions:
                     <input
                         name="instructions"
+                        id="special-text"
                         type="text"
                         placeholder="Type special instructions here"
                         maxLength="100"
@@ -180,7 +181,7 @@ export default function OrderForm(props) {
             </div>
 
             <div className="submit">
-                <button>Submit</button>
+                <button id="order-button">Add to Order</button>
             </div>
         </form>
     )
