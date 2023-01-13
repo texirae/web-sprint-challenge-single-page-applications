@@ -7,7 +7,7 @@ const Home = () => {
     const history = useHistory();
 
     const routeToOrder= () => {
-        history.push("/Form")
+        history.push("/pizza")
     }
 
     return(

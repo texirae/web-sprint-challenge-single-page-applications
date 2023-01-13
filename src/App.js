@@ -3,8 +3,8 @@ import React from "react";
 import { Route, Link } from "react-router-dom";
 
 import Home from './Components/Home'
-import OrderForm from './Components/Form'
-import OrderConfirmation from './Components/Confirmation'
+import Form from './Components/Form'
+import Confirmation from './Components/Confirmation'
 import Help from './Components/Help'
 
 
@@ -23,11 +23,11 @@ const App = () => {
       </Route>
 
       <Route exact path="/pizza">
-        <OrderForm />
+        <Form />
       </Route>
 
       <Route exact path="/confirmation">
-        <OrderConfirmation />
+        <Confirmation />
       </Route>
 
       <Route exact path="/help">

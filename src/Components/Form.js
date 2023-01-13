@@ -1,9 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
-const OrderForm = (props) => {
+const Form = () => {
 
-    const { values, update, submit } = props;
+    const [ form, setForm ]= useState({
+        name: "",
+        size: "",
+        pepperoni: false,
+        green_peppers: false,
+        pineapple: false,
+        ham: false,
+        sausage: false,
+        special: "",
+    });
 
     const history = useHistory();
 
@@ -13,13 +22,13 @@ const OrderForm = (props) => {
 
 
     const onChange = evt => {
-        const {value} = evt.target;
-        update(value);
+        const {form} = evt.target;
+        //update(form);
     }
 
     const onSubmit = evt => {
         evt.preventDefault();
-        submit();
+        //submit();
     }
 
 
@@ -27,7 +36,7 @@ const OrderForm = (props) => {
         <form id="pizza-form" onSubmit={onSubmit}>
             <div className="form-group-selection">
                 <label>Size:
-                    <select value={values.size} name="size-dropdown" onChange={onChange}>
+                    <select value={form.size} name="size-dropdown" onChange={onChange}>
                         <option value="">--Select a Size--</option>
                         <option value="Small">Small</option>
                         <option value="medium">Medium</option>
@@ -44,7 +53,7 @@ const OrderForm = (props) => {
                         name="sauce"
                         value="marinara"
                         onChange={onChange}
-                        checked={values.sauce === "marinara"} />
+                        checked={e.target.type === "radio" ? e.target.checked : e.target.value} />
                 </label>
 
                 <label>Creamy Garlic Parmesan:
@@ -53,7 +62,7 @@ const OrderForm = (props) => {
                         name="sauce"
                         value="parmesan"
                         onChange={onChange}
-                        checked={values.sauce === "parmesan"} />
+                        checked={form.sauce === "parmesan"} />
                 </label>
 
                 <label>Barbeque:
@@ -62,7 +71,7 @@ const OrderForm = (props) => {
                         name="sauce"
                         value="barbeque"
                         onChange={onChange}
-                        checked={values.sauce === "barbeque"} />
+                        checked={form.sauce === "barbeque"} />
                 </label>
 
                 <label>Buffalo:
@@ -71,7 +80,7 @@ const OrderForm = (props) => {
                         name="sauce"
                         value="buffalo"
                         onChange={onChange}
-                        checked={values.sauce === "buffalo"} />
+                        checked={form.sauce === "buffalo"} />
                 </label>
             </div>
 
@@ -81,7 +90,7 @@ const OrderForm = (props) => {
                     <input
                         type="checkbox"
                         name="pepperoni"
-                        checked={values.pepperoni}
+                        checked={form.pepperoni}
                         onChange={onChange} />
                 </label>
 
@@ -89,7 +98,7 @@ const OrderForm = (props) => {
                     <input
                         type="checkbox"
                         name="sausage"
-                        checked={values.sausage}
+                        checked={form.sausage}
                         onChange={onChange} />
                 </label>
 
@@ -97,7 +106,7 @@ const OrderForm = (props) => {
                     <input
                         type="checkbox"
                         name="bacon"
-                        checked={values.bacon}
+                        checked={form.bacon}
                         onChange={onChange} />
                 </label>
 
@@ -105,7 +114,7 @@ const OrderForm = (props) => {
                     <input
                         type="checkbox"
                         name="chicken"
-                        checked={values.chicken}
+                        checked={form.chicken}
                         onChange={onChange} />
                 </label>
 
@@ -113,7 +122,7 @@ const OrderForm = (props) => {
                     <input
                         type="checkbox"
                         name="mushrooms"
-                        checked={values.mushrooms}
+                        checked={form.mushrooms}
                         onChange={onChange} />
                 </label>
 
@@ -121,7 +130,7 @@ const OrderForm = (props) => {
                     <input
                         type="checkbox"
                         name="peppers"
-                        checked={values.peppers}
+                        checked={form.peppers}
                         onChange={onChange} />
                 </label>
 
@@ -129,7 +138,7 @@ const OrderForm = (props) => {
                     <input
                         type="checkbox"
                         name="onions"
-                        checked={values.onions}
+                        checked={form.onions}
                         onChange={onChange} />
                 </label>
 
@@ -137,7 +146,7 @@ const OrderForm = (props) => {
                     <input
                         type="checkbox"
                         name="pineapples"
-                        checked={values.pineapples}
+                        checked={form.pineapples}
                         onChange={onChange} />
                 </label>
 
@@ -145,14 +154,14 @@ const OrderForm = (props) => {
                     <input
                         type="checkbox"
                         name="olives"
-                        checked={values.olives}
+                        checked={form.olives}
                         onChange={onChange} />
                 </label>
             </div>
 
             <div className="form-group-selection">
                 <label>Crust:
-                    <select value={values.crust} name="crust" onChange={onChange}>
+                    <select value={form.crust} name="crust" onChange={onChange}>
                         <option value="">--Select a Crust--</option>
                         <option value="pan">Pan</option>
                         <option value="hand-tossed">Hand-Tossed</option>
@@ -169,7 +178,7 @@ const OrderForm = (props) => {
                         type="text"
                         placeholder="Type special instructions here"
                         maxLength="100"
-                        value={values.instructions}
+                        value={form.instructions}
                         onChange={onChange} />
                 </label>
             </div>
@@ -181,4 +190,4 @@ const OrderForm = (props) => {
     )
 }
 
-export default OrderForm;
+export default Form;
