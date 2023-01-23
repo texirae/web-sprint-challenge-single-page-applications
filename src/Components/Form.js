@@ -4,8 +4,6 @@ import * as yup from "yup";
 
 const schema = yup.object().shape({
     name: yup.string().required().min(2, "name must be at least 2 characters"),
-    size: yup.string().required("You must select a size"),
-    sauce: yup.string().required("You must select a sauce")
 });
 
 const Form = () => {
@@ -28,8 +26,6 @@ const Form = () => {
 
     const [ errors, setErrors ]= useState({
         name: "",
-        size: "",
-        sauce: ""
     });
 
     const setFormErrors = (name, value) => {
@@ -62,7 +58,6 @@ const Form = () => {
 
     return (        
         <form id="pizza-form" onSubmit={onSubmit}>
-            <div>{errors.name}</div>
             <div className="order-name">
                 <label>Name:
                     <input
@@ -75,6 +70,7 @@ const Form = () => {
                             onChange={onChange} 
                         />
                 </label>
+                { errors.name.length > 2 && <p className="error">{errors.name}</p> }
             </div>
             <div className="form-group-selection">
                 <label>Size:
