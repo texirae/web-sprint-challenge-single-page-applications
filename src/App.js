@@ -29,10 +29,6 @@ const App = () => {
       <Route exact path="/confirmation">
         <Confirmation />
       </Route>
-
-      <Route exact path="/help">
-        <Help />
-      </Route>
     </div>
   );
 };

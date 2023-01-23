@@ -13,7 +13,7 @@ const Home = () => {
     return(
         <div className="home-wrapper">
             <img src={pizza} alt="pizza" />
-            <button className="orders-button"
+            <button id="order-pizza"
                 onClick={routeToOrder}
             >
                 Pizza?
