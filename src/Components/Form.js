@@ -4,14 +4,18 @@ import { useHistory } from "react-router-dom";
 const Form = () => {
 
     const [ form, setForm ]= useState({
-        name: "",
         size: "",
+        sauce: "",
         pepperoni: false,
-        green_peppers: false,
-        pineapple: false,
-        ham: false,
         sausage: false,
-        special: "",
+        bacon: false,
+        chicken: false,
+        mushrooms: false,
+        peppers: false,
+        onions: false,
+        pineapples: false,
+        olives: false,
+        instructions: "",
     });
 
     const history = useHistory();
@@ -21,8 +25,9 @@ const Form = () => {
     }
 
 
-    const onChange = evt => {
-        const {form} = evt.target;
+    const onChange = e => {
+        const { value } = e.target;
+        setForm(value);
         //update(form);
     }
 
@@ -34,35 +39,50 @@ const Form = () => {
 
     return (        
         <form id="pizza-form" onSubmit={onSubmit}>
+            <div className="order-name">
+                <label>Name:
+                    <input
+                            name="name"
+                            id="name-input"
+                            type="text"
+                            placeholder="Type your name here"
+                            maxLength="100"
+                            value={form.name}
+                            onChange={onChange} 
+                        />
+                </label>
+            </div>
             <div className="form-group-selection">
                 <label>Size:
-                    <select value={form.size} name="size-dropdown" onChange={onChange}>
-                        <option value="">--Select a Size--</option>
-                        <option value="Small">Small</option>
-                        <option value="medium">Medium</option>
-                        <option value="large">Large</option>
+                    <select value={form.size} name="size" id="size-dropdown" onChange={onChange}>
+                        <option size="">--Select a Size--</option>
+                        <option size="Small">Small</option>
+                        <option size="medium">Medium</option>
+                        <option size="large">Large</option>
                     </select>
                 </label>
             </div>
 
             <div className="form-group-radio">
-                <label>Please Choose a Sauce:</label>
+                <label>Sauce:</label>
                 <label>Marinara:
                     <input
                         type="radio"
                         name="sauce"
                         value="marinara"
                         onChange={onChange}
-                        checked={e.target.type === "radio" ? e.target.checked : e.target.value} />
+                        checked={form.sauce === "marinara"} 
+                    />
                 </label>
 
-                <label>Creamy Garlic Parmesan:
+                <label> Garlic Parmesan:
                     <input
                         type="radio"
                         name="sauce"
-                        value="parmesan"
+                        value="garlic parmesan"
                         onChange={onChange}
-                        checked={form.sauce === "parmesan"} />
+                        checked={form.sauce === "garlic parmesan"} 
+                    />
                 </label>
 
                 <label>Barbeque:
@@ -71,7 +91,8 @@ const Form = () => {
                         name="sauce"
                         value="barbeque"
                         onChange={onChange}
-                        checked={form.sauce === "barbeque"} />
+                        checked={form.sauce === "barbeque"} 
+                    />
                 </label>
 
                 <label>Buffalo:
@@ -80,7 +101,8 @@ const Form = () => {
                         name="sauce"
                         value="buffalo"
                         onChange={onChange}
-                        checked={form.sauce === "buffalo"} />
+                        checked={form.sauce === "buffalo"}
+                    />
                 </label>
             </div>
 
@@ -162,10 +184,10 @@ const Form = () => {
             <div className="form-group-selection">
                 <label>Crust:
                     <select value={form.crust} name="crust" onChange={onChange}>
-                        <option value="">--Select a Crust--</option>
-                        <option value="pan">Pan</option>
-                        <option value="hand-tossed">Hand-Tossed</option>
-                        <option value="thin">Thin</option>
+                        <option crust="">--Select a Crust--</option>
+                        <option crust="pan">Pan</option>
+                        <option crust="hand-tossed">Hand-Tossed</option>
+                        <option crust="thin">Thin</option>
                     </select>
                 </label>
             </div>
