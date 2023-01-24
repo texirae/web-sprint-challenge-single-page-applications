@@ -55,7 +55,7 @@ describe('Pizza App', () => {
       .each(checkbox => {
         expect(checkbox[0].checked).to.equal(true)
       })
-      crustInput().select('hand-tossed')
+      crustInput().select('Pan')
       instructionsInput().type('Burn the crust')
       orderBtn().click()      
     })
