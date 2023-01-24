@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import * as yup from "yup";
+import axios from "axios";
 
 const schema = yup.object().shape({
     name: yup.string().required().min(2, "name must be at least 2 characters"),
@@ -11,7 +12,7 @@ const Form = () => {
     const [ form, setForm ]= useState({
         name: "",
         size: "",
-        sauce: "",
+        sauce: false,
         pepperoni: false,
         sausage: false,
         bacon: false,
@@ -21,6 +22,7 @@ const Form = () => {
         onions: false,
         pineapples: false,
         olives: false,
+        crust: "",
         instructions: ""
     });
 
@@ -44,14 +46,37 @@ const Form = () => {
     const onChange = e => {
         const { checked, value, name, type } = e.target;
         const valueToUse = type === 'checkbox' ? checked : value
-        setForm(value);
+
+        setForm({...form, [name]: valueToUse});        
         setFormErrors(name, valueToUse);
-        //update(form);
     }
 
-    const onSubmit = evt => {
-        evt.preventDefault();
-        //submit();
+    const onSubmit = e => {
+        e.preventDefault();
+        const newOrder = {
+            name: form.name,
+            size: form.size,
+            sauce: form.sauce,
+            pepperoni: form.pepperoni,
+            sausage: form.sausage,
+            bacon: form.bacon,
+            chicken: form.chicken,
+            mushrooms: form.mushrooms,
+            peppers: form.peppers,
+            onions: form.onions,
+            pineapples: form.pineapples,
+            olives: form.olives,
+            crust: form.crust,
+            instructions: form.instructions
+        }
+
+        axios.post('https://reqres.in/api/orders', newOrder)
+            .then(res => {
+                console.log(res.data);
+            })
+            .catch(err => {
+                console.log(err);
+            })
     }
 
 
@@ -59,7 +84,7 @@ const Form = () => {
     return (        
         <form id="pizza-form" onSubmit={onSubmit}>
             <div className="order-name">
-                <label>Name:
+                <label><h3>Enter your Name:</h3>
                     <input
                             name="name"
                             id="name-input"
@@ -73,7 +98,7 @@ const Form = () => {
                 { errors.name.length > 2 && <p className="error">{errors.name}</p> }
             </div>
             <div className="form-group-selection">
-                <label>Size:
+                <label><h3>Select a size:</h3>
                     <select value={form.size} name="size" id="size-dropdown" onChange={onChange}>
                         <option size="">--Select a Size--</option>
                         <option size="Small">Small</option>
@@ -84,14 +109,14 @@ const Form = () => {
             </div>
 
             <div className="form-group-radio">
-                <label>Sauce:</label>
+                <h3>Choose your Sauce:</h3>
                 <label>Marinara:
                     <input
                         type="radio"
                         name="sauce"
                         value="marinara"
-                        onChange={onChange}
                         checked={form.sauce === "marinara"} 
+                        onChange={onChange}                        
                     />
                 </label>
 
@@ -100,8 +125,8 @@ const Form = () => {
                         type="radio"
                         name="sauce"
                         value="garlic parmesan"
-                        onChange={onChange}
                         checked={form.sauce === "garlic parmesan"} 
+                        onChange={onChange}                        
                     />
                 </label>
 
@@ -110,8 +135,8 @@ const Form = () => {
                         type="radio"
                         name="sauce"
                         value="barbeque"
-                        onChange={onChange}
                         checked={form.sauce === "barbeque"} 
+                        onChange={onChange}                        
                     />
                 </label>
 
@@ -120,14 +145,14 @@ const Form = () => {
                         type="radio"
                         name="sauce"
                         value="buffalo"
-                        onChange={onChange}
                         checked={form.sauce === "buffalo"}
+                        onChange={onChange}                        
                     />
                 </label>
             </div>
 
             <div className="form-group-checkbox">
-                <label>Please Choose your Toppings:</label>
+                <h3>Select you Toppings:</h3>
                 <label>Pepperoni:
                     <input
                         type="checkbox"
@@ -202,7 +227,7 @@ const Form = () => {
             </div>
 
             <div className="form-group-selection">
-                <label>Crust:
+                <label><h3>Select type of Crust:</h3>
                     <select value={form.crust} name="crust" onChange={onChange}>
                         <option crust="">--Select a Crust--</option>
                         <option crust="pan">Pan</option>
@@ -213,7 +238,7 @@ const Form = () => {
             </div>
 
             <div className="form-group-text-box">
-                <label>Special Instructions:
+                <label><h3>Special Instructions:</h3>
                     <input
                         name="instructions"
                         id="special-text"
@@ -226,7 +251,7 @@ const Form = () => {
             </div>
 
             <div className="submit">
-                <button id="order-button" onClick={routeToConfirmation}>Add to Order</button>
+                <button id="order-button">Add to Order</button>
             </div>
         </form>
     )
