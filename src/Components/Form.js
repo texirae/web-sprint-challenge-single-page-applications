@@ -3,10 +3,25 @@ import { useHistory } from "react-router-dom";
 import * as yup from "yup";
 import axios from "axios";
 
+//form validation
 const schema = yup.object().shape({
     name: yup.string().required().min(2, "name must be at least 2 characters"),
+    size: yup.string().required(),
+    sauce: yup.string().required(),
+    pepperoni: yup.string().notRequired(),
+    sausage: yup.string().notRequired(),
+    bacon: yup.string().notRequired(),
+    chicken: yup.string().notRequired(),
+    mushrooms: yup.string().notRequired(),
+    peppers: yup.string().notRequired(),
+    onions: yup.string().notRequired(),
+    pineapples: yup.string().notRequired(),
+    olives: yup.string().notRequired(),
+    crust: yup.string().notRequired(),
+    instructions: yup.string().notRequired()
 });
 
+//set state for the form
 const Form = () => {
 
     const [ form, setForm ]= useState({
@@ -36,13 +51,14 @@ const Form = () => {
         .catch(err => setErrors({...errors, [name]:err.errors[0]}))
     }
 
+    //directs to confirmation page
     const history = useHistory();
 
     const routeToConfirmation= () => {
         history.push("/Confirmation")
     }
 
-
+    
     const onChange = e => {
         const { checked, value, name, type } = e.target;
         const valueToUse = type === 'checkbox' ? checked : value
@@ -51,6 +67,7 @@ const Form = () => {
         setFormErrors(name, valueToUse);
     }
 
+    //to create newOrder once submit button has been pressed
     const onSubmit = e => {
         e.preventDefault();
         const newOrder = {

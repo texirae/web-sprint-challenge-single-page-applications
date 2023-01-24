@@ -16,6 +16,7 @@ describe('Pizza App', () => {
   const olivesInput = () => cy.get('input[name=olives')
   const instructionsInput = () => cy.get('input[name=instructions')
   const orderBtn = () => cy.get('button[id="order-button')
+  const toppingsInput = () => cy.get('[type="checkbox"]')
 
   //test that all elements are showing up
   it('the proper elements are showing', () => {
@@ -31,6 +32,7 @@ describe('Pizza App', () => {
     olivesInput().should('exist')
     instructionsInput().should('exist')
     orderBtn().should('exist')
+    toppingsInput().should('exist')
   })
 
   //test for text box inputs
@@ -44,6 +46,15 @@ describe('Pizza App', () => {
       .should('have.value', '')
       .type('Burn the crust')
       .should('have.value', "Burn the crust")
+  })
+
+  //check that all toppings checkboxes can be selected
+  it('can select all toppings checkboxes', () => {
+    toppingsInput()
+      .check()
+      .each(checkbox => {
+        expect(checkbox[0].checked).to.equal(true)
+      })
   })
 
   
