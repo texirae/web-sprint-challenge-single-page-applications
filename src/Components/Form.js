@@ -89,7 +89,8 @@ const Form = () => {
 
         axios.post('https://reqres.in/api/orders', newOrder)
             .then(res => {
-                console.log(res.data);
+                const orderFromBackend = res.data;
+                setForm([orderFromBackend, ...form])
             })
             .catch(err => {
                 console.log(err);
@@ -245,7 +246,7 @@ const Form = () => {
 
             <div className="form-group-selection">
                 <label><h3>Select type of Crust:</h3>
-                    <select value={form.crust} name="crust" onChange={onChange}>
+                    <select value={form.crust} name="crust" id="crust-dropdown" onChange={onChange}>
                         <option crust="">--Select a Crust--</option>
                         <option crust="pan">Pan</option>
                         <option crust="hand-tossed">Hand-Tossed</option>
